@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2>User Profile</h2>
+        <hr>
+
+        <div style="background-color: #ffffcc; border: 1px solid #ffcc00; padding: 10px; margin-bottom: 15px;">
+            <p><strong>DEBUG INFO (profile.html):</strong></p>
+            <p>User Object: {{ user }}</p>
+            <p>user.avatar_filename (from database): "{{ user.avatar_filename }}"</p>
+            {% if user.avatar_filename %}
+                <p>Generated URL by url_for('static', filename=user.avatar_filename): "{{ url_for('static', filename=user.avatar_filename) }}"</p>
+            {% else %}
+                <p>No avatar_filename is set for this user.</p>
+            {% endif %}
+        </div>
+
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        {% if user.avatar_filename %}
+                            <img src="{{ url_for('static', filename=user.avatar_filename) }}" alt="User Avatar" class="img-fluid rounded-circle mb-2" style="max-width: 150px; max-height: 150px; border: 1px solid #ddd; object-fit: cover;">
+                        {% else %}
+                            <div class="rounded-circle bg-secondary d-flex justify-content-center align-items-center text-white mb-2" style="width: 120px; height: 120px; font-size: 2.5rem; border: 1px solid #ddd;">
+                                {{ user.username[0]|upper if user.username else 'U' }}
+                            </div>
+                        {% endif %}
+                    </div>
+        {# --- "ACCOUNT MANAGEMENT" SECTION --- #}
+   <div class="card mb-3">
+    <div class="card-header">Account Management</div>
+    <div class="card-body">
+
+                            <a href="{{ url_for('main.edit_profile') }}" class="btn btn-primary btn-sm px-3">Edit Profile</a>
+         {% if delete_form %}
+             <form method="POST" action="{{ url_for('main.delete_account') }}" onsubmit="return confirm('Are you absolutely sure you want to delete your account? This action cannot be undone and all your messages will be lost.');">
+                {{ delete_form.hidden_tag() }}
+                {{ delete_form.submit(class="btn btn-danger btn-sm") }}
+            </form>
+         {% endif %}
+    </div>
+</div>
+
+
+        <h3 class="mt-4">My Messages (Last 5)</h3>
+        {% if recent_messages %}
+            <ul class="list-group">
+                {% for msg in recent_messages %}
+                    <li class="list-group-item {% if msg.is_from_ai %}list-group-item-light{% else %}list-group-item-primary{% endif %}">
+                        <strong>{% if msg.is_from_ai %}AI:{% else %}You:{% endif %}</strong> {{ msg.content[:80] }}{% if msg.content|length > 80 %}...{% endif %}
+                        <small class="text-muted float-end">{{ msg.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You haven't sent or received any messages yet.</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

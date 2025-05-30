@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+
+{% if results %}
+    <p>Found {{ results|length }} message(s):</p>
+    <div class="list-group">
+        {% for message in results %}
+            <div class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">
+                        {% if message.is_from_ai %}
+                            <span class="badge bg-info text-dark">AI</span>
+                        {% else %}
+                            <span class="badge bg-primary">You</span>
+                        {% endif %}
+                    </h5>
+                    <small>{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+                </div>
+                <p class="mb-1">{{ message.content | nl2br }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No messages found matching your query.</p>
+{% endif %}
+
+<a href="{{ url_for('main.chat') }}" class="btn btn-secondary mt-3">Back to Chat</a>
+{% endblock %}

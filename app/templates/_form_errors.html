@@ -1,0 +1,19 @@
+{% macro render_field_errors(field) %}
+    {% if field.errors %}
+        <div class="invalid-feedback d-block">
+            {% for error in field.errors %}
+                <span>{{ error }}</span><br>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro render_form_errors(form) %}
+    {% if form.errors and form.errors.get('csrf_token', None) %}
+        <div class="alert alert-danger">
+            {% for error in form.errors.get('csrf_token', []) %}
+                {{ error }}<br>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chat-container" style="height: 70vh; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; display: flex; flex-direction: column;">
+    {% for message in messages %}
+        <div class="message mb-2 p-2 rounded {% if message.is_from_ai %}ai-message align-self-start bg-light text-dark{% else %}user-message align-self-end bg-primary text-white{% endif %}"
+             style="max-width: 70%; word-wrap: break-word;">
+            <small class="message-sender"><strong>{% if message.is_from_ai %}AI Assistant{% else %}{{ message.author.username }}{% endif %}:</strong></small><br>
+            {{ message.content | nl2br }}
+            <small class="text-muted d-block text-end" style="font-size: 0.75em;">{{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+        </div>
+    {% else %}
+        <p>No messages yet. Start the conversation!</p>
+    {% endfor %}
+</div>
+
+<form method="POST" action="{{ url_for('main.chat') }}">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.message_text(class="form-control" + (" is-invalid" if form.message_text.errors else ""), rows="3", placeholder="Type your message here...") }}
+        {% if form.message_text.errors %}
+            <div class="invalid-feedback">
+                {% for error in form.message_text.errors %}<span>{{ error }}</span>{% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        {{ form.submit(class="btn btn-success") }}
+    </div>
+</form>
+
+<script>
+    const chatContainer = document.querySelector('.chat-container');
+    if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+</script>
+{% endblock %}
