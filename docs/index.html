@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Messenger - Flask Project</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: #0779e4 3px solid;
+        }
+        header h1 {
+            margin: 0;
+        }
+        section {
+            padding: 20px 0;
+            border-bottom: 1px #eee solid;
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+        h2 {
+            color: #333;
+        }
+        a {
+            color: #0779e4;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background: #555;
+            text-decoration: none;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Messenger Flask Project</h1>
+        </header>
+
+        <main>
+            <section id="overview">
+                <h2>Project Overview</h2>
+                <p>
+                    Welcome to the AI Messenger project! This is a full-stack web application built with Python and Flask.
+                    It allows users to register, log in, and engage in a chat conversation with an AI assistant powered by Google's Generative AI (Gemini).
+                </p>
+                <p>
+                    This project demonstrates various web development concepts including user authentication, database interactions with SQLAlchemy,
+                    form handling via WTForms, file uploads for user avatars, and integrating external AI services.
+                </p>
+            </section>
+
+            <section id="features">
+                <h2>Key Features</h2>
+                <ul>
+                    <li>User Registration & Secure Login</li>
+                    <li>AI Chat Interface</li>
+                    <li>User Profile Management (Edit & Delete Account)</li>
+                    <li>Avatar Uploads</li>
+                    <li>Message History Search</li>
+                    <li>Responsive Design using Bootstrap 5</li>
+                </ul>
+            </section>
+
+            <section id="tech-stack">
+                <h2>Technology Stack</h2>
+                <ul>
+                    <li>Python, Flask</li>
+                    <li>SQLAlchemy, SQLite</li>
+                    <li>Flask-Login, Flask-WTF</li>
+                    <li>Google Generative AI (Gemini)</li>
+                    <li>HTML, CSS, JavaScript, Bootstrap 5</li>
+                </ul>
+            </section>
+
+            <section id="source-code">
+                <h2>View the Code</h2>
+                <p>
+                    The complete source code for this project is available on GitHub. You can explore the implementation,
+                    set it up locally, or even contribute!
+                </p>
+                <a href="https://github.com/EmptinessShine/AI_FINAL" class="button" target="_blank">View on GitHub</a>
+            </section>
+
+            <section id="setup">
+                <h2>Run Locally</h2>
+                <p>
+                    To run this application on your own computer, please follow the setup instructions provided in the
+                    <a href="https://github.com/EmptinessShine/AI_FINAL/blob/main/README.md" target="_blank">README.md</a> file on GitHub.
+                </p>
+            </section>
+
+        </main>
+    </div>
+    <footer>
+        <p>© 2024 EmptinessShine. Project for learning purposes.</p>
+    </footer>
+</body>
+</html>
